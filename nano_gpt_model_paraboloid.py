@@ -61,7 +61,6 @@ class FeedForward(nn.Module):
 #      nn.Linear(n_hidden, n_embed),
 #      nn.Dropout(dropout)
 #    )
-    #self.pb = gpt.Paraboloid(n_embed, n_hidden) #BEST 0.4895147383213043 / 0.48020339012145996 with 3M
     self.pb = gpt.Paraboloid(n_embed, n_hidden, lr_factor = 10., input_factor = 0.1, wd_factor = 0.01)
     self.rl = nn.ReLU()
     self.ln = nn.Linear(n_hidden, n_embed)
@@ -86,7 +85,6 @@ class Block(nn.Module):
     super().__init__()
     self.sa_heads = MultiHeadAttention(n_embed, n_heads, n_embed // n_heads, block_size, dropout)
     #self.ffwd = FeedForward(n_embed, n_embed*4, dropout)
-    #self.ffwd = FeedForward(n_embed, n_embed, dropout) #BEST 0.48020339012145996 with 3M
     self.ffwd = FeedForward(n_embed, n_embed, dropout)
     self.ln1 = nn.LayerNorm(n_embed)
     self.ln2 = nn.LayerNorm(n_embed)
@@ -131,11 +129,6 @@ class NanoGPT_paraboloid(nn.Module):
     x = self.blocks(x)
     x = self.ln_f(x)
     
-    #x_shape = x.shape
-    #x_reshaped = x.reshape(-1, x_shape[2])
-    #logits = self.lm_head(x_reshaped)  # (B,T,vocab_size)
-    #logits = logits.reshape(x_shape[0],x_shape[1],self.lm_head.output_features)
-
     logits = self.lm_head(x) # [batch_size, block_size, vocab_size]
     
     if targets is None:
