@@ -112,9 +112,6 @@ class NanoGPT_paraboloid(nn.Module):
     self.blocks = nn.Sequential(*[Block(n_embed, n_heads, block_size, dropout) for _ in range(n_layers)])
     self.ln_f = nn.LayerNorm(n_embed)
     self.lm_head = nn.Linear(n_embed, vocab_size)
-    #self.lm_head = gpt.ParaboloidOutput(n_embed, vocab_size, input_factor = 0.5, lr_factor = 2.) # 0.46147534251213074
-    #self.lm_head = gpt.ParaboloidOutput(n_embed, vocab_size, input_factor = 0.5, lr_factor = 2., grad_factor = 0.5)
-    #self.lm_head = gpt.ParaboloidOutput(n_embed, vocab_size, input_factor = 0.5, lr_factor = 1., wd_factor = 1.)
     
     self.device = device
     self.block_size = block_size
