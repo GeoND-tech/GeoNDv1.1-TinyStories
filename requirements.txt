@@ -1,5 +1,5 @@
 transformers
-datasets
+datasets==3.0.0
 peft
 accelerate
 evaluate
@@ -7,6 +7,5 @@ pandas
 numpy
 scipy
 scikit-learn
-torch==2.11.0
+torch==2.9.0
 geondptfree==2.9.0.1.1rc5
-
