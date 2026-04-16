@@ -86,7 +86,7 @@ Download the pretrained model and run:
 python small_pblms_test.py
 ```
 #### Training from scratch
-Run
+Run:
 ```
 python small_pblms_train.py
 ```
