@@ -95,7 +95,7 @@ python small_pblms_train.py
 |   Model           | Epochs        | Parameters (Millions) | Training loss | Validation loss |
 | ----------------- | -------------        | -------- | -------- | -------- |
 | ```NanoGPT``` - baseline       | 3       | 4.484M | 0.4452368915081024 | 0.4511740207672119 |
-| ```dla_paraboloidout```        | 10       | 3.171M | 0.4290921986103058 | 0.44785311818122864 |
+| ```NanoGPT_paraboloidout```        | 10       | 3.171M | 0.4290921986103058 | 0.44785311818122864 |
 
 ## Sample
 You can 100 sample generated stories by the baseline model and the 30% smaller paraboloid model in the files ```100stories.txt``` and ```100storiespb.txt```, respectively.
